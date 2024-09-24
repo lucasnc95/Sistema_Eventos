@@ -1,0 +1,35 @@
+<!-- templates/relatorio_usuario.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Eventos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Eventos Participados por: {{ usuario.Nome }}</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Título do Evento</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Horário</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for participacao in participacoes %}
+            <tr>
+                <td>{{ participacao.evento.Titulo }}</td>
+                <td>{{ participacao.evento.Descricao }}</td>
+                <td>{{ participacao.evento.Data }}</td>
+                <td>{{ participacao.evento.Horario }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

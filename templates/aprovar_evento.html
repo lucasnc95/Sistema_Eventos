@@ -1,0 +1,26 @@
+<!-- templates/aprovar_evento.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprovar/Reprovar Evento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Aprovar/Reprovar Evento</h2>
+    <form method="POST">
+        <p><strong>Título:</strong> {{ evento.Titulo }}</p>
+        <p><strong>Descrição:</strong> {{ evento.Descricao }}</p>
+        <p><strong>Data:</strong> {{ evento.Data }}</p>
+        <p><strong>Horário:</strong> {{ evento.Horario }}</p>
+        <p><strong>Status Atual:</strong> {{ evento.Status }}</p>
+        <div class="form-group">
+            <button type="submit" name="acao" value="aprovar" class="btn btn-success">Aprovar</button>
+            <button type="submit" name="acao" value="reprovar" class="btn btn-danger">Reprovar</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

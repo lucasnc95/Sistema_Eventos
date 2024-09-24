@@ -1,0 +1,60 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Sistema de Eventos</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('relatorio_usuario', user_id=current_user.IDUser) }}">Meus Eventos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h2>Eventos</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for evento in eventos %}
+            <tr>
+                <td>{{ evento.Titulo }}</td>
+                <td>{{ evento.Descricao }}</td>
+                <td>{{ evento.Data }}</td>
+                <td>{{ evento.Horario }}</td>
+                <td>{{ evento.Status }}</td>
+                <td>
+                    {% if current_user.tipo == 'docente' and evento.Status == 'pendente' %}
+                        <a href="{{ url_for('aprovar_evento', event_id=evento.IDEvento) }}" class="btn btn-warning btn-sm">Aprovar/Reprovar</a>
+                    {% endif %}
+                    {% if evento.Status == 'aprovado' %}
+                        <a href="{{ url_for('inscrever', event_id=evento.IDEvento) }}" class="btn btn-primary btn-sm">Inscrever-se</a>
+                    {% endif %}
+                    <a href="{{ url_for('relatorio_evento', event_id=evento.IDEvento) }}" class="btn btn-info btn-sm">Ver Inscritos</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

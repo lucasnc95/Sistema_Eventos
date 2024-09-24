@@ -1,0 +1,39 @@
+<!-- templates/editar_evento.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Evento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Editar Evento</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="{{ evento.Titulo }}" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3" required>{{ evento.Descricao }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input type="date" class="form-control" id="data" name="data" value="{{ evento.Data }}" required>
+        </div>
+        <div class="form-group">
+            <label for="horario">Horário</label>
+            <input type="time" class="form-control" id="horario" name="horario" value="{{ evento.Horario }}" required>
+        </div>
+        <div class="form-group">
+            <label for="vagas">Vagas</label>
+            <input type="number" class="form-control" id="vagas" name="vagas" value="{{ evento.Vagas }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

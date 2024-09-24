@@ -1,0 +1,31 @@
+<!-- templates/relatorio_evento.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Inscritos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Inscritos no Evento: {{ evento.Titulo }}</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nome do Usuário</th>
+            <th>Presente</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for inscricao in inscricoes %}
+            <tr>
+                <td>{{ inscricao.usuario.Nome }}</td>
+                <td>{{ 'Sim' if inscricao.Presente else 'Não' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

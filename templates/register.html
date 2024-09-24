@@ -1,0 +1,56 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function mostrarCamposAdicionais() {
+            const tipoUsuario = document.getElementById('tipo_usuario').value;
+            document.getElementById('campo_siape').style.display = (tipoUsuario === 'docente') ? 'block' : 'none';
+            document.getElementById('campo_matricula').style.display = (tipoUsuario === 'discente') ? 'block' : 'none';
+            document.getElementById('campo_cpf').style.display = (tipoUsuario === 'externo') ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Cadastro</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="tipo_usuario">Tipo de Usuário</label>
+            <select id="tipo_usuario" name="tipo_usuario" class="form-control" onchange="mostrarCamposAdicionais()" required>
+                <option value="">Selecione...</option>
+                <option value="docente">Docente</option>
+                <option value="discente">Discente</option>
+                <option value="externo">Usuário Externo</option>
+            </select>
+        </div>
+        <div class="form-group" id="campo_siape" style="display:none;">
+            <label for="siape">SIAPE (Somente para Docentes)</label>
+            <input type="text" class="form-control" id="siape" name="siape">
+        </div>
+        <div class="form-group" id="campo_matricula" style="display:none;">
+            <label for="matricula">Matrícula (Somente para Discentes)</label>
+            <input type="text" class="form-control" id="matricula" name="matricula">
+        </div>
+        <div class="form-group" id="campo_cpf" style="display:none;">
+            <label for="cpf">CPF (Somente para Usuários Externos)</label>
+            <input type="text" class="form-control" id="cpf" name="cpf">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+        <p class="text-center mt-3">Já possui uma conta? <a href="{{ url_for('login') }}">Faça login</a></p>
+    </form>
+</div>
+</body>
+</html>
